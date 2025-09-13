@@ -2,6 +2,7 @@ package com.lucianodev.course.config;
 
 import com.lucianodev.course.entities.Order;
 import com.lucianodev.course.entities.User;
+import com.lucianodev.course.entities.enums.OrderStatus;
 import com.lucianodev.course.repositories.OrderRepository;
 import com.lucianodev.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class TestConfig implements CommandLineRunner {
         User user2 = new User(null, "Alex Green", "alex@email.com", "439812235", "345612");
 
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), user1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), user2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), user1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, user1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.CANCELED, user2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.DELIVERED, user1);
 
         userRepository.saveAll(Arrays.asList(user1, user2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
